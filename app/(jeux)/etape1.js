@@ -1,27 +1,25 @@
 import { View, Text, StyleSheet, TextInput, Button, Image } from "react-native";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
+import { MyContext } from "../_layout";
 import { Link } from "expo-router";
+
 // import RNExitApp from "react-native-exit-app";
-import { Redirect } from "expo-router";
+// import { Redirect } from "expo-router";
 
 export default function Etape1() {
   const [letter, setInputLetter] = useState("");
   const [showImage, setShowImage] = useState(false);
+  const { letters, setLetters } = useContext(MyContext);
+
   // tirer une lettre au hasard entre A et M
   // pour cela faut-il faire nécessairement une fonction ? Ou possible de stocker dans une variable let ?
-  function getRandomLetter() {
-    const alphabet = "ABCDEFGHIJKLM";
-    let getLetter = "";
-    getLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(getLetter);
-    // comment faire pour garder la lettre stockée tant que le joueur cherche à la deviner ?
-    if (letter === getLetter) {
-      console.log("youpi");
-      setShowImage(true);
-    } else {
-      console.log("bouh");
-    }
+  const getResult = () => {};
+  if (letter === letters) {
+    console.log("youpi");
+    setShowImage(true);
+  } else {
+    console.log("bouh");
   }
 
   // stocker cette lettre
@@ -51,7 +49,7 @@ export default function Etape1() {
       <Button
         title="OK"
         onPress={() => {
-          getRandomLetter();
+          getResult();
         }}
       />
       {
